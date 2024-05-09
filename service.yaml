@@ -1,0 +1,29 @@
+---
+- hosts: all
+  tasks:
+    - name: Install apache
+      dnf:
+        name: httpd
+        state: latest
+      when: ansible_facts['os_family']| lower == 'redhat'
+
+    - name: Restart httpd Service
+      service: name=httpd enabled=true state=started
+      when: ansible_facts['os_family']| lower == 'redhat'
+
+    - name: Permit http 
+      firewalld: 
+        service: http
+        permanent: yes
+        state: enabled
+        immediate: yes        
+      notify: Restart firewalld  
+      when: ansible_facts['os_family']| lower == 'redhat'
+
+  handlers:
+    - name: Restart firewalld 
+      ansible.builtin.service:
+        name: firewalld
+        state: restarted
+
+...

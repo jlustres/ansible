@@ -1,0 +1,15 @@
+---
+- hosts: all
+  tasks:
+    - name: Content update
+      copy:
+        dest: /tmp/resolv.conf
+        content: "nameserver 192.168.1.1\n"
+
+    - name: Desinstala VIM
+      dnf:
+        name: vim
+        state: absent
+      when: ansible_facts['os_family']| lower == 'redhat'
+...
+
