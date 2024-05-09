@@ -11,5 +11,11 @@
         name: vim
         state: absent
       when: ansible_facts['os_family']| lower == 'redhat'
+
+    - name: Desinstala VIM
+      apt:
+        name: vim
+        state: absent
+      when: ansible_facts['os_family']| lower == 'debian'
 ...
 
