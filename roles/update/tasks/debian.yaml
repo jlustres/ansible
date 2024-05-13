@@ -1,0 +1,7 @@
+---
+- name: Actualiza Debian
+  ansible.builtin.apt:
+    name: vim 
+    state: latest 
+  notify: restartserver
+...

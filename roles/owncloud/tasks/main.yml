@@ -1,0 +1,10 @@
+---
+- include_tasks: install.yaml
+  tags: [install, subirservicio]
+
+- include_tasks: descargar.yaml
+  tags: descargar
+
+- include_tasks: firewalld.yaml
+  tags: firewalld
+...

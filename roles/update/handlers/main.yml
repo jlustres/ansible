@@ -1,0 +1,5 @@
+---
+- name: restartserver
+  ansible.builtin.reboot:
+    reboot_timeout: 30
+...

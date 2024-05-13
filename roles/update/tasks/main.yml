@@ -1,0 +1,11 @@
+---
+- name: Actualiza Centos y RedHat
+  import_tasks: centos_rh.yaml
+  when: ansible_facts['os_family']|lower == 'redhat' 
+- name: Actualiza Debian 
+  import_tasks: debian.yaml
+  when: ansible_facts['os_family']|lower == 'debian'
+
+...
+
+

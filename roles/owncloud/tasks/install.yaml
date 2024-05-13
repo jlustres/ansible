@@ -1,0 +1,19 @@
+---
+- name: Instala {{ pkg }}
+  dnf:
+    name: "{{ pkg }}"
+    state: latest
+  tags: install
+
+- name:  Subir servicios {{ svc }}
+  systemd: 
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  loop: "{{ svc }}"
+    
+  tags: 
+    - subirservicio
+    - install
+...
+

@@ -1,0 +1,17 @@
+---
+- name: Permitir http 
+  ansible.posix.firewalld:
+    service: http
+    permanent: yes 
+    state: enabled
+    immediate: yes 
+  tags: firewalld
+
+- name: Selinux permisivo
+  selinux:
+    policy: targeted
+    state: permissive
+  tags: firewalld
+
+...
+

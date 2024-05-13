@@ -1,0 +1,7 @@
+---
+pkg: [php-curl, bzip2, gzip, php-gd, php-intl, php-json, php-ldap, php-mbstring, php-mysqlnd, php-xml, php-zip, php-opcache, httpd, mod_ssl, mariadb, mariadb-server, php, unzip]
+
+svc: 
+  - httpd
+  - mariadb
+...

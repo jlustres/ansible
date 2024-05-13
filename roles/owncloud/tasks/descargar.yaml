@@ -1,0 +1,9 @@
+---
+- name: Descargar owncloud
+  unarchive:
+    src: "{{ descarga }}"
+    dest: "{{ ruta }}"
+    remote_src: yes
+  notify: restartapache
+  tags: descargar
+...

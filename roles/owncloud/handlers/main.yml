@@ -1,0 +1,6 @@
+---
+- name: restartapache
+  systemd:
+    name: httpd
+    state: restarted
+...

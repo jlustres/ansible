@@ -1,0 +1,10 @@
+---
+- name: Example Playbook
+  hosts: all
+  gather_facts: true  # This is the default, but explicitly mentioning it here for clarity
+
+  tasks:
+   - name: Display system information
+     debug:
+      msg: "System: {{ ansible_facts['os_family'] }}"
+...

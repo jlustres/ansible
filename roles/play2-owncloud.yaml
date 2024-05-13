@@ -1,0 +1,8 @@
+---
+- hosts: debian 
+  gather_facts: no
+  become: true
+    #  user: oze
+  roles: 
+    - owncloud
+...

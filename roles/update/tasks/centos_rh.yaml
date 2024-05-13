@@ -1,0 +1,7 @@
+---
+- name: Actualiza Centos y RedHat
+  ansible.builtin.yum:
+    name: vim 
+    state: latest
+  notify: restartserver
+...
