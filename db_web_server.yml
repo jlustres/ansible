@@ -1,0 +1,55 @@
+- name: Deploy Web Application
+  hosts: 192.168.1.203
+  tasks:
+    - name: Install all required dependencies 
+      apt:  name={{ item }} state=latest
+      with_items:
+        - python3
+        - python3-setuptools
+        - python3-dev
+        - build-essential
+        - python3-pip
+        - python3-mysqldb
+        - python3-virtualenv
+
+    - name: Install MysQL  
+      apt:  name={{ item }} state=latest
+      with_items:
+        - mariadb-server
+        - mariadb-client
+
+    - name: Start MySQL
+      service:
+        name: mysql
+        state: started
+        enabled: yes
+
+    - name: Create Aplication Database
+      mysql_db: name=employee_db state=present
+
+    - name: Create Database User
+      mysql_user: 
+        name: db_user
+        password: Pasww0rd
+        priv: '*.*:ALL'
+        state: present
+        host: '%'
+
+    - name: Install Flask
+      pip: 
+        name: "{{item}}"
+        virtualenv: /home/oze
+      environment:
+        PATH: "{{ ansible_env.PATH }}:{{ ansible_user_dir }}/usr/bin/"   
+      with_items: 
+        - flask
+        - flask-mysql
+        - panda
+
+    - name: Copy source app
+      copy: src=app.py dest=/opt/app.py mode=755
+
+    - name: start Web server
+      shell: FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &
+          
+         
